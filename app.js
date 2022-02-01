@@ -9,22 +9,43 @@ app.get('/', (req, res)=> {
 });
 
 // Query String Parameters
-// /pokemon?name=pikachu
-app.get('/pokemon', (req, res)=> {
+//greet?name=Sean&year=2002
+app.get('/greet', (req, res)=> {
 
     let name = req.query.name.toUpperCase();
-    res.send(`<h1> ${name} </h1>`);
+    let year = req.query.year.toUpperCase();
+    year = 2022 - year
+    res.send(`<h1>Hello, ${name}! You are ${year - 1} or ${year} years old. </h1>`);
 
 });
 
 // Route Parameters
 // /pokemon/pikachu
-app.get('/timesten/:id', (req, res)=> {
+app.get('/math/:num1/:operation/:num2', (req, res)=> {
 
-    let id = parseInt(req.params.id);
-    console.log(id);
+    let num1 = parseInt(req.params.num1);
+    let num2 = parseInt(req.params.num2);
+    let operation = req.params.operation;
+    let result = 0;
 
-    res.send(`<h1> ${id * 10} </h1>`);
+    if(operation == 'times')
+    {
+        result = num1 * num2;
+    }
+    else if(operation == 'plus')
+    {
+        result = num1 + num2;
+    }
+    else if(operation == 'minus')
+    {
+        result = num1 - num2;
+    }
+    else(operation == 'divide')
+    {
+        result = num1 / num2;
+    }
+
+    res.send(`<h1> ${result} </h1>`);
 
 });
 
